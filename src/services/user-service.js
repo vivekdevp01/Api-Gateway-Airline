@@ -40,7 +40,29 @@ async function signIn(data){
         throw new AppError('something went wrong,',StatusCodes.INTERNAL_SERVER_ERROR)
     }
 }
+async function isAuthenticated(token){
+    try{
+        if(!token){
+            throw new AppError('jwt token not presnet',StatusCodes.BAD_REQUEST);
+        }
+        const response=Auth.verifyToken(token);
+        const user=await userRepository.get(response.id);
+        if(!user){
+            throw new AppError('no user find',StatusCodes.BAD_REQUEST);
+        }
+        return user.id;
+    }
+    catch(error){
+        if(error instanceof AppError) throw error;
+        if(error.name=='JsonWebTokenError'){
+            throw new AppError('invalid jwt token',StatusCodes.BAD_REQUEST);
+        }
+        console.log(error);
+        throw error;
+    }
+}
 module.exports={
     createUser,
-    signIn
+    signIn,
+    isAuthenticated
 }
