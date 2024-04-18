@@ -10,7 +10,13 @@
 //     INITIATED:'initiated',
 //     PENDING:'pending'
 // }
+USER_ROLES_ENUMS={
+    ADMIN:'admin',
+    CUSTOMER:'customer',
+    FLIGHT_COMPANY:'flight_company'
+}
 module.exports={
     // SEAT_TYPE,
     // Booking_Status
+    USER_ROLES_ENUMS
 }
