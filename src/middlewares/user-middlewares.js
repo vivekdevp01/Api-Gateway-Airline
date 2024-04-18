@@ -1,5 +1,6 @@
 const {StatusCodes}=require('http-status-codes');
 const {ErrorResponse}=require('../utils/common');
+const { UserService } = require('../services');
 function validateCreateUser(req,res,next){
     if(!req.body.email){
         ErrorResponse.message="Something went wrong";
@@ -10,6 +11,7 @@ function validateCreateUser(req,res,next){
     }
     next();
 }
+
 module.exports={
-    validateCreateUser
+    validateCreateUser,
 }
