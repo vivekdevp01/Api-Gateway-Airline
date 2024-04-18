@@ -15,22 +15,22 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use(
-    '/flightsService',
-    createProxyMiddleware({
-      target: ServerConfig.FLIGHT_SERVICE,
-      changeOrigin: true,
-    }),
-  );
-  app.use(
-    '/bookingService',
-    createProxyMiddleware({
-      target: ServerConfig.BOOKING_SERVICE,
-      changeOrigin: true,
-    }),
-  );
+  '/flightsService',
+  createProxyMiddleware({
+    target: ServerConfig.FLIGHT_SERVICE,
+    changeOrigin: true,
+  }),
+);
+app.use(
+  '/bookingService',
+  createProxyMiddleware({
+    target: ServerConfig.BOOKING_SERVICE,
+    changeOrigin: true,
+  }),
+);
 app.use(limiter);
-
 app.use('/api', apiRoutes);
+
 // app.use('/flightsService/api', apiRoutes);
 
 
